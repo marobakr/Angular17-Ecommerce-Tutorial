@@ -4,3 +4,8 @@ export interface IRegister {
   password: string;
   rePassword: string;
 }
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
