@@ -16,7 +16,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
-import { IRegister } from '../../core/interfaces/iregister';
+import { IRegister } from '../../core/interfaces/http';
 import { AuthService } from '../../core/service/auth.service';
 
 @Component({
