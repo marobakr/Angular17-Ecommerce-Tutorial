@@ -8,7 +8,12 @@
           <p-inputGroupAddon>
             <i class="pi pi-user"></i>
           </p-inputGroupAddon>
-          <input pInputText formControlName="name" placeholder="Username" />
+          <input
+            pInputText
+            formControlName="name"
+            placeholder="Username"
+            [autofocus]="true"
+          />
         </p-inputGroup>
         <div class="validation-smg">
           @if (name.dirty && name.touched) { @if (name.getError('required')) {
