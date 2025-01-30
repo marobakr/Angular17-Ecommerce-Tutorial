@@ -7,6 +7,8 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
@@ -28,6 +30,7 @@ import { AuthService } from '../../core/service/auth.service';
     ButtonModule,
     MessagesModule,
     ToastModule,
+    NgxSpinnerModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -42,7 +45,9 @@ export class RegisterComponent {
 
   constructor(
     private authService_: AuthService,
-    private _messageService: MessageService
+    private _messageService: MessageService,
+    private _ngxSpinnerService: NgxSpinnerService,
+    private router: Router
   ) {
     this.initFormControls();
     this.initFormGroupe();
@@ -95,16 +100,18 @@ export class RegisterComponent {
   }
 
   siginUp(data: IRegister): void {
+    this._ngxSpinnerService.show();
     this.authService_.register(data).subscribe({
       next: (response) => {
-        console.log(response);
         if (response._id) {
           this.show('success', 'success', 'success register');
         }
+        this._ngxSpinnerService.hide();
+        this.router.navigate(['login']);
       },
       error: (err) => {
         this.show('error', 'Error', err.error.error);
-        console.log(err.error.error);
+        this._ngxSpinnerService.hide();
       },
     });
   }
