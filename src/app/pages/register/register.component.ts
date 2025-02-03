@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -20,6 +20,7 @@ import { SharedModule } from '../../shared/module/shared/shared.module';
   imports: [SharedModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class RegisterComponent {
   name!: FormControl;
@@ -29,10 +30,10 @@ export class RegisterComponent {
   registrationForm!: FormGroup;
 
   constructor(
-    private authService_: AuthService,
+    private _authService: AuthService,
     private _messageService: MessageService,
     private _ngxSpinnerService: NgxSpinnerService,
-    private router: Router
+    private _router: Router
   ) {
     this.initFormControls();
     this.initFormGroupe();
@@ -83,16 +84,16 @@ export class RegisterComponent {
       );
     }
   }
-
   siginUp(data: IRegister): void {
     this._ngxSpinnerService.show();
-    this.authService_.register(data).subscribe({
+    this._authService.register(data).subscribe({
       next: (response) => {
         if (response._id) {
           this.show('success', 'success', 'success register');
           const { email, password } = data;
-          this.authService_.login({ email, password }).subscribe((next) => {
-            this.router.navigate(['user']);
+          this._authService.login({ email, password }).subscribe((next) => {
+            localStorage.setItem('token', response._id);
+            this._router.navigate(['user']);
           });
         }
         this._ngxSpinnerService.hide();
