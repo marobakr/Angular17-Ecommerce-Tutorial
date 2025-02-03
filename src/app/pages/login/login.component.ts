@@ -63,6 +63,7 @@ export class LoginComponent {
       next: (response) => {
         if (response._id) {
           this.show('success', 'success', 'success login');
+          localStorage.setItem('token', response._id);
         }
         this._ngxSpinnerService.hide();
         this.router.navigate(['user']);
