@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { ILogin } from '../../core/interfaces/http';
 import { AuthService } from '../../core/service/auth.service';
+import { UserDataService } from '../../core/service/user-data.service';
 import { SharedModule } from '../../shared/module/shared/shared.module';
 
 @Component({
@@ -24,7 +25,8 @@ export class LoginComponent {
     private authService_: AuthService,
     private _messageService: MessageService,
     private _ngxSpinnerService: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private _userData: UserDataService
   ) {
     this.initFormControls();
     this.initFormGroupe();
@@ -64,9 +66,11 @@ export class LoginComponent {
         if (response._id) {
           this.show('success', 'success', 'success login');
           localStorage.setItem('token', response._id);
+          this._userData.userName.next(response.name);
+          localStorage.setItem('username', response.name);
         }
         this._ngxSpinnerService.hide();
-        this.router.navigate(['user']);
+        this.router.navigate(['home']);
       },
       error: (err) => {
         this.show('error', 'Error', err.error.error);
