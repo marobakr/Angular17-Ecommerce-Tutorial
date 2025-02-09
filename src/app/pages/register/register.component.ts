@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
 
 import { IRegister } from '../../core/interfaces/http';
 import { AuthService } from '../../core/service/auth.service';
+import { UserDataService } from '../../core/service/user-data.service';
 import { SharedModule } from '../../shared/module/shared/shared.module';
 
 @Component({
@@ -33,7 +34,8 @@ export class RegisterComponent {
     private _authService: AuthService,
     private _messageService: MessageService,
     private _ngxSpinnerService: NgxSpinnerService,
-    private _router: Router
+    private _router: Router,
+    private _userData: UserDataService
   ) {
     this.initFormControls();
     this.initFormGroupe();
@@ -93,7 +95,9 @@ export class RegisterComponent {
           const { email, password } = data;
           this._authService.login({ email, password }).subscribe((next) => {
             localStorage.setItem('token', response._id);
-            this._router.navigate(['user']);
+            this._router.navigate(['home']);
+            this._userData.userName.next(response.name);
+            localStorage.setItem('username', response.name);
           });
         }
         this._ngxSpinnerService.hide();
