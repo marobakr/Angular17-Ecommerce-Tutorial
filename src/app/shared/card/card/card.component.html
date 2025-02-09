@@ -1,0 +1,55 @@
+<div class="flex justify-content-between align-items-center flex-wrap">
+  @for (product of Products; track $index) {
+  <div
+    [ngClass]="{
+      'col-6': isSmallCard,
+      'col-12 md:col-3 lg:col-2': !isSmallCard
+    }"
+  >
+    <div
+      [ngClass]="{
+        'flex flex-wrap lg:flex-nowrap justify-content-center gap-2':
+          isSmallCard,
+      }"
+    >
+      <figure
+        [ngClass]="{ 'md:w-6rem lg:w-9rem': isSmallCard,  }"
+        class="m-1 shadow-2 border-round-2xl overflow-hidden"
+      >
+        <img
+          #image
+          [ngClass]="{ 'h-full': isSmallCard, 'h-20rem': !isSmallCard }"
+          class="w-full"
+          [src]="product.image"
+          (error)="
+            image.src =
+              'https://storage.googleapis.com/fir-auth-1c3bc.appspot.com/1692257709689-logitech heaphone.jpg'
+          "
+          alt="product"
+        />
+      </figure>
+      <div class="content py-1 w-full">
+        <p class="truncate-text overflow-hidden font-medium text-xs my-1">
+          {{ product.description }}
+        </p>
+        <div class="flex align-items-center gap-2">
+          <div class="price flex gap-2 align-items-center">
+            <span class="text-color-secondary font-bold">
+              <del>14</del>
+            </span>
+            <span class="new-price font-bold">
+              <span class="text-green-400">$</span> {{ product.price }}
+            </span>
+          </div>
+          <div class="offer">
+            <span class="bg-red-500 p-1 border-circle text-white text-xs"
+              >%{{ product.discount }}</span
+            >
+            <span class="fonot-bold text-xs font-bold px-1">off</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
