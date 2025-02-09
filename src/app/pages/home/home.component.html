@@ -1,1 +1,36 @@
-<p>home works!</p>
+<section>
+  <div class="container-fluid">
+    <h5 class="font-bold text-color-secondary uppercase">hot sale</h5>
+    <div class="grid">
+      <div class="col-12 md:col-5">
+        <div class="card">
+          <p-galleria
+            [value]="images"
+            [circular]="true"
+            [showItemNavigators]="true"
+            [showThumbnails]="false"
+            [containerStyle]="{
+              'max-width': '100%',
+              'border-radius': '10px',
+              overflow: 'hidden'
+            }"
+          >
+            <ng-template pTemplate="item" let-item>
+              <img
+                [src]="item.itemImageSrc"
+                style="width: 100%; display: block; height: 240px"
+              />
+            </ng-template>
+          </p-galleria>
+        </div>
+      </div>
+      <div class="hidden md:block md:col-6">
+        <app-card [isSmallCard]="true" [Products]="smallProducts" />
+      </div>
+    </div>
+    <div class="product">
+      <h2 class="text-color-secondary font-bold">best product</h2>
+      <app-card [isSmallCard]="false" [Products]="popularProducts | popular" />
+    </div>
+  </div>
+</section>
