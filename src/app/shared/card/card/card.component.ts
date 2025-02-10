@@ -1,10 +1,10 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Message } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { IProducts } from '../../../core/interfaces/http';
+import { CartService } from '../../../core/service/cart.service';
 
 @Component({
   selector: 'app-card',
@@ -14,7 +14,16 @@ import { IProducts } from '../../../core/interfaces/http';
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  constructor() {}
+  constructor(private _cartService: CartService) {}
+  isAddedToCart: boolean = false;
   @Input({ required: true }) isSmallCard: boolean = false;
   @Input({ required: true }) Products!: IProducts[];
+
+  addToCart(productId: string) {
+    const userId = localStorage.getItem('token') ?? '';
+    this._cartService.addToCart({ userId, productId }).subscribe((next) => {
+      console.log(next);
+      this.isAddedToCart = true;
+    });
+  }
 }

@@ -44,9 +44,14 @@ export class HomeComponent {
   }
 
   getAllProducts(): void {
-    this._productsService.allProducts().subscribe((next) => {
-      this.smallProducts = next.slice(0, 4);
-      this.popularProducts = next;
+    this._productsService.allProducts().subscribe((response: IProducts[]) => {
+      this.smallProducts = response.slice(0, 4);
+      this.popularProducts = response.map((product) => {
+        return {
+          ...product,
+          isAddedToCart: false,
+        };
+      });
     });
   }
 }
