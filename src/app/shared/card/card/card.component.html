@@ -3,7 +3,7 @@
   <div
     [ngClass]="{
       'col-6': isSmallCard,
-      'col-12 md:col-3 lg:col-2': !isSmallCard
+      'col-12 md:col-4 lg:col-3': !isSmallCard
     }"
   >
     <div
@@ -13,8 +13,9 @@
       }"
     >
       <figure
+        [routerLink]="['/cart', product.id]"
         [ngClass]="{ 'md:w-6rem lg:w-9rem': isSmallCard,  }"
-        class="m-1 shadow-2 border-round-2xl overflow-hidden"
+        class="m-1 shadow-2 border-round-2xl overflow-hidden cursor-pointer"
       >
         <img
           #image
@@ -49,6 +50,16 @@
           </div>
         </div>
       </div>
+      @if (!isSmallCard) {
+      <p-button
+        label="add to cart"
+        severity="warning"
+        styleClass="my-2 uppercase w-full"
+        icon="pi pi-cart-plus text-2xl"
+        iconPos="right"
+      />
+
+      }
     </div>
   </div>
   }
