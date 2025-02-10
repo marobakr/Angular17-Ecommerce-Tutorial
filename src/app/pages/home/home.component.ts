@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GalleriaModule } from 'primeng/galleria';
 import { IProducts } from '../../core/interfaces/http';
 import { PopularPipe } from '../../core/pipes/popular.pipe';
-import { UserDataService } from '../../core/service/user-data.service';
+import { ProductsService } from '../../core/service/products.service';
 import { CardComponent } from '../../shared/card/card/card.component';
 
 @Component({
@@ -13,7 +13,7 @@ import { CardComponent } from '../../shared/card/card/card.component';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  constructor(private _userData: UserDataService) {}
+  constructor(private _productsService: ProductsService) {}
   images: any[] | undefined;
   smallProducts!: IProducts[];
   popularProducts!: IProducts[];
@@ -44,9 +44,9 @@ export class HomeComponent {
   }
 
   getAllProducts(): void {
-    this._userData.allProducts().subscribe((next) => {
-      this.smallProducts = next.products.slice(0, 4);
-      this.popularProducts = next.products;
+    this._productsService.allProducts().subscribe((next) => {
+      this.smallProducts = next.slice(0, 4);
+      this.popularProducts = next;
     });
   }
 }

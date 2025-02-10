@@ -7,6 +7,7 @@ import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
+import { CartService } from '../../core/service/cart.service';
 import { UserDataService } from '../../core/service/user-data.service';
 import { AuthService } from './../../core/service/auth.service';
 @Component({
@@ -27,6 +28,7 @@ import { AuthService } from './../../core/service/auth.service';
 export class UserNavComponent {
   constructor(
     private _userData: UserDataService,
+    private _cart: CartService,
     private _auth: AuthService,
     private router: Router
   ) {}
@@ -66,7 +68,7 @@ export class UserNavComponent {
   }
   getUserCartCount(): void {
     const id = localStorage.getItem('token') ?? '';
-    this._userData
+    this._cart
       .getCartCount(id)
       .subscribe((next) => (this.cartCount = next.cart.length));
   }
