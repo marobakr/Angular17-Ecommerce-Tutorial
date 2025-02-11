@@ -44,14 +44,18 @@ export class HomeComponent {
   }
 
   getAllProducts(): void {
+    const storedCart = localStorage.getItem('cartState');
+    const cartState = storedCart ? JSON.parse(storedCart) : {};
+
     this._productsService.allProducts().subscribe((response: IProducts[]) => {
       this.smallProducts = response.slice(0, 4);
       this.popularProducts = response.map((product) => {
         return {
           ...product,
-          isAddedToCart: false,
+          isAddedToCart: cartState[product._id] || false,
         };
       });
+      console.log(this.popularProducts);
     });
   }
 }
