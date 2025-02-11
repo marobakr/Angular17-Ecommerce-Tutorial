@@ -23,7 +23,14 @@ export class CardComponent {
     const userId = localStorage.getItem('token') ?? '';
     this._cartService.addToCart({ userId, productId }).subscribe((next) => {
       console.log(next);
+      this._cartService.countOfCart.next(next.cart.length);
       this.isAddedToCart = true;
+
+      const storedCart = localStorage.getItem('cartState');
+      const cartState = storedCart ? JSON.parse(storedCart) : {};
+
+      cartState[productId] = true;
+      localStorage.setItem('cartState', JSON.stringify(cartState));
     });
   }
 }

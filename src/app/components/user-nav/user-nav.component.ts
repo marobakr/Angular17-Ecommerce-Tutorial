@@ -58,6 +58,10 @@ export class UserNavComponent {
         path: 'categories',
       },
     ];
+
+    this._cart.countOfCart.subscribe((next) => {
+      this.cartCount = next;
+    });
   }
 
   getUserName(): void {

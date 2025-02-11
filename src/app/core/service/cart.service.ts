@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { baseUrl } from '../apiRoot/baseUrl';
 
 @Injectable({
@@ -15,4 +15,6 @@ export class CartService {
   addToCart(userData: { productId: string; userId: string }): Observable<any> {
     return this._httpClient.post(`${baseUrl}/add-to-cart`, userData);
   }
+
+  countOfCart: BehaviorSubject<number> = new BehaviorSubject(0);
 }
