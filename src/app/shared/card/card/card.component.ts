@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { IProducts } from '../../../core/interfaces/http';
 import { CartService } from '../../../core/service/cart.service';
+import { NotifecationsService } from '../../../core/service/notifecations.service';
 
 @Component({
   selector: 'app-card',
@@ -14,7 +15,10 @@ import { CartService } from '../../../core/service/cart.service';
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  constructor(private _cartService: CartService) {}
+  constructor(
+    private _cartService: CartService,
+    private _notifecationsService: NotifecationsService
+  ) {}
   isAddedToCart: boolean = false;
   @Input({ required: true }) isSmallCard: boolean = false;
   @Input({ required: true }) Products!: IProducts[];
@@ -22,7 +26,7 @@ export class CardComponent {
   addToCart(productId: string) {
     const userId = localStorage.getItem('token') ?? '';
     this._cartService.addToCart({ userId, productId }).subscribe((next) => {
-      console.log(next);
+      this._notifecationsService.showSuccess('success', next.message);
       this._cartService.countOfCart.next(next.cart.length);
       this.isAddedToCart = true;
 

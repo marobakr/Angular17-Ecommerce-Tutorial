@@ -8,10 +8,10 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MessageService } from 'primeng/api';
 
 import { IRegister } from '../../core/interfaces/http';
 import { AuthService } from '../../core/service/auth.service';
+import { NotifecationsService } from '../../core/service/notifecations.service';
 import { UserDataService } from '../../core/service/user-data.service';
 import { SharedModule } from '../../shared/module/shared/shared.module';
 
@@ -29,10 +29,11 @@ export class RegisterComponent {
   password!: FormControl;
   rePassword!: FormControl;
   registrationForm!: FormGroup;
+  isRegisterd: boolean = false;
 
   constructor(
     private _authService: AuthService,
-    private _messageService: MessageService,
+    private _notifecationsService: NotifecationsService,
     private _ngxSpinnerService: NgxSpinnerService,
     private _router: Router,
     private _userData: UserDataService
@@ -79,6 +80,7 @@ export class RegisterComponent {
   submit() {
     if (this.registrationForm.valid) {
       this.siginUp(this.registrationForm.value);
+      this.isRegisterd = true;
     } else {
       this.registrationForm.markAllAsTouched();
       Object.keys(this.registrationForm.controls).forEach((control) =>
@@ -91,7 +93,7 @@ export class RegisterComponent {
     this._authService.register(data).subscribe({
       next: (response) => {
         if (response._id) {
-          this.show('success', 'success', 'success register');
+          this._notifecationsService.showSuccess('success', 'success register');
           const { email, password } = data;
           this._authService.login({ email, password }).subscribe((next) => {
             localStorage.setItem('token', response._id);
@@ -103,16 +105,9 @@ export class RegisterComponent {
         this._ngxSpinnerService.hide();
       },
       error: (err) => {
-        this.show('error', 'Error', err.error.error);
+        this._notifecationsService.showError('Error', err.error.error);
         this._ngxSpinnerService.hide();
       },
-    });
-  }
-  show(severity: string, summary: string, detail: string) {
-    this._messageService.add({
-      severity: severity,
-      summary: summary,
-      detail: detail,
     });
   }
 }
