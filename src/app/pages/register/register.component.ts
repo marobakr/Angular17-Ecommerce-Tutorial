@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 import { IRegister } from '../../core/interfaces/http';
 import { AuthService } from '../../core/service/auth.service';
@@ -34,7 +33,6 @@ export class RegisterComponent {
   constructor(
     private _authService: AuthService,
     private _notifecationsService: NotifecationsService,
-    private _ngxSpinnerService: NgxSpinnerService,
     private _router: Router,
     private _userData: UserDataService
   ) {
@@ -89,7 +87,6 @@ export class RegisterComponent {
     }
   }
   siginUp(data: IRegister): void {
-    this._ngxSpinnerService.show();
     this._authService.register(data).subscribe({
       next: (response) => {
         if (response._id) {
@@ -102,11 +99,9 @@ export class RegisterComponent {
             localStorage.setItem('username', response.name);
           });
         }
-        this._ngxSpinnerService.hide();
       },
       error: (err) => {
         this._notifecationsService.showError('Error', err.error.error);
-        this._ngxSpinnerService.hide();
       },
     });
   }
