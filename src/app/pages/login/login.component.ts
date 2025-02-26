@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { ILogin } from '../../core/interfaces/http';
 import { AuthService } from '../../core/service/auth.service';
 import { NotifecationsService } from '../../core/service/notifecations.service';
@@ -24,7 +23,6 @@ export class LoginComponent {
   constructor(
     private authService_: AuthService,
     private _notifecationsService: NotifecationsService,
-    private _ngxSpinnerService: NgxSpinnerService,
     private router: Router,
     private _userData: UserDataService
   ) {
@@ -60,7 +58,6 @@ export class LoginComponent {
   }
 
   siginIn(data: ILogin): void {
-    this._ngxSpinnerService.show();
     this.authService_.login(data).subscribe({
       next: (response) => {
         if (response._id) {
@@ -69,12 +66,10 @@ export class LoginComponent {
           this._userData.userName.next(response.name);
           localStorage.setItem('username', response.name);
         }
-        this._ngxSpinnerService.hide();
         this.router.navigate(['home']);
       },
       error: (err) => {
         this._notifecationsService.showError('Error', err.error.error);
-        this._ngxSpinnerService.hide();
       },
     });
   }
