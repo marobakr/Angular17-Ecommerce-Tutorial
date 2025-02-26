@@ -67,6 +67,13 @@ export const routes: Routes = [
             (c) => c.CategoryComponent
           ),
       },
+      {
+        path: 'specificCategory/:type',
+        loadComponent: () =>
+          import('./pages/specific-category/specific-category.component').then(
+            (c) => c.SpecificCategoryComponent
+          ),
+      },
     ],
   },
 ];
