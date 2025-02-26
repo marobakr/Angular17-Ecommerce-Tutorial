@@ -6,11 +6,12 @@ import { MessagesModule } from 'primeng/messages';
 import { IProducts } from '../../../core/interfaces/http';
 import { CartService } from '../../../core/service/cart.service';
 import { NotifecationsService } from '../../../core/service/notifecations.service';
+import { EmptyComponent } from '../../empty/empty.component';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [NgClass, ButtonModule, RouterLink, MessagesModule],
+  imports: [NgClass, ButtonModule, RouterLink, MessagesModule, EmptyComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
@@ -22,6 +23,7 @@ export class CardComponent {
   isAddedToCart: boolean = false;
   @Input({ required: true }) isSmallCard: boolean = false;
   @Input({ required: true }) Products!: IProducts[];
+  @Input() searchKey: string = '';
 
   addToCart(productId: string) {
     const userId = localStorage.getItem('token') ?? '';
