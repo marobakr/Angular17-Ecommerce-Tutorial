@@ -52,7 +52,7 @@ export class HomeComponent {
       this.popularProducts = response.products.map((product: IProducts) => {
         return {
           ...product,
-          isAddedToCart: cartState[product._id] || false,
+          isAddedToCart: cartState[product.id] || false,
         };
       });
       console.log(this.popularProducts);
