@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { myDetailsResolver } from './core/guards/my-details.resolver';
 import { registerGuard } from './core/guards/register.guard';
 
 export const routes: Routes = [
@@ -59,6 +60,7 @@ export const routes: Routes = [
           import('./pages/details/details.component').then(
             (c) => c.DetailsComponent
           ),
+        resolve: { details: myDetailsResolver },
       },
       {
         path: 'categories',

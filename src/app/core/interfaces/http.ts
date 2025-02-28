@@ -11,7 +11,7 @@ export interface ILogin {
 }
 
 export interface IProducts {
-  _id: string;
+  id: string;
   title: string;
   image: string;
   price: number;
