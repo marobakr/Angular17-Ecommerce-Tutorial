@@ -2,7 +2,7 @@
   <h1 class="px-2 text-color-secondary capitalize">all cart products</h1>
   <div class="container-fluid py-5">
     <p-dataView #dv [value]="allCartProducts" [rows]="5" [paginator]="true">
-      <ng-template pTemplate="list" let-products>
+      <ng-template pTemplate="list" let-allCartProducts>
         <div class="grid grid-nogutter">
           @for (product of allCartProducts; track $index) {
           <div class="col-12">
