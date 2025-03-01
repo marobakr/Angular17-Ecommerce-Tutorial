@@ -52,7 +52,7 @@
       </div>
       @if (!isSmallCard) { @if (!product.isAddedToCart) {
       <p-button
-        (click)="addToCart(product.id); product.isAddedToCart = true"
+        (click)="addToCart(product); product.isAddedToCart = true"
         label="add to cart"
         severity="warning"
         styleClass="my-2 uppercase w-full"
@@ -75,9 +75,9 @@
   }@empty { @if (!isSmallCard) {
   <div class="flex-1 text-center">
     <app-empty></app-empty>
-    <h5 class="capitalize">
+    <h2 class="capitalize">
       no product to show <span class="text-red-500">{{ searchKey }}</span>
-    </h5>
+    </h2>
     <p-button
       [routerLink]="['/home']"
       label="back To home"
