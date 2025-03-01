@@ -76,7 +76,6 @@ export const routes: Routes = [
             (c) => c.SpecificCategoryComponent
           ),
       },
-      { path: '**', redirectTo: 'home', pathMatch: 'full' },
     ],
   },
 ];
