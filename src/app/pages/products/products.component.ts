@@ -5,6 +5,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { IProducts } from '../../core/interfaces/http';
 import { SearchNamePipe } from '../../core/pipes/search-name.pipe';
+import { CartService } from '../../core/service/cart.service';
 import { ProductsService } from '../../core/service/products.service';
 import { CardComponent } from '../../shared/card/card/card.component';
 @Component({
@@ -22,7 +23,10 @@ import { CardComponent } from '../../shared/card/card/card.component';
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent {
-  constructor(private _productsService: ProductsService) {}
+  constructor(
+    private _productsService: ProductsService,
+    private _cart: CartService
+  ) {}
   allProducts: IProducts[] = [];
   searchKey: string = '';
 
@@ -30,8 +34,13 @@ export class ProductsComponent {
     this.getAllProducts();
   }
   getAllProducts(): void {
-    this._productsService
-      .allProducts()
-      .subscribe((next) => (this.allProducts = next.products));
+    this._productsService.allProducts().subscribe((response: any) => {
+      this.allProducts = response.products.map((product: IProducts) => {
+        return {
+          ...product,
+          isAddedToCart: this._cart.isAddedToCart(product) || false,
+        };
+      });
+    });
   }
 }
