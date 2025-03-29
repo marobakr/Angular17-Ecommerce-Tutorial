@@ -1,27 +1,25 @@
-# Ecommerce
+# E-Commerce Project with Angular  
+🚀 A practical **Angular** application for building a full **E-Commerce** project.  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+## 📌 Description  
+This project is a hands-on **Angular** implementation of an E-Commerce store, covering key concepts such as:  
 
-## Development server
+- Building the **UI** entirely using **PrimeNG** and **PrimeFlex**.  
+- **Integration** with **Authentication API** to understand **Guards & Layouts**.  
+- **Integration** with an API to display various data, including:  
+  - **Products**  
+  - **Product Details**  
+  - **Categories**  
+  - **Specific Category**  
+  - **Cart**  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🎥 YouTube Video Explanation  
+📺 You can watch the full project explanation on my YouTube channel:  
+🔗 **[Watch here](#)** *(https://www.youtube.com/@GeekCodeDev/videos)*  
 
-## Code scaffolding
+## ⚙️ How to Run the Project Locally  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. **Clone the repository**  
+   ```bash
+   git clone [https://github.com/YOUR_GITHUB_USERNAME/REPO_NAME](https://github.com/marobakr/Angular17-Ecommerce-Tutorial).git
+   cd Angular17-Ecommerce-Tutorial
