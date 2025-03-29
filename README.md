@@ -1,7 +1,7 @@
 # E-Commerce Project with Angular  
 🚀 A practical **Angular** application for building a full **E-Commerce** project.  
 
-![E-Commerce Project Preview](https://via.placeholder.com/1200x600?text=E-Commerce+Project+Preview)  
+![E-Commerce Project Preview](https://drive.google.com/file/d/1EwYnvvaem51Ovgtz7ed0DjBWJRHTLWWe/view?usp=sharing)  
 
 ## 📌 Description  
 This project is a hands-on **Angular** implementation of an E-Commerce store, covering key concepts such as:  
