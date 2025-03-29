@@ -1,6 +1,8 @@
 # E-Commerce Project with Angular  
 🚀 A practical **Angular** application for building a full **E-Commerce** project.  
 
+![E-Commerce Project Preview](https://via.placeholder.com/1200x600?text=E-Commerce+Project+Preview)  
+
 ## 📌 Description  
 This project is a hands-on **Angular** implementation of an E-Commerce store, covering key concepts such as:  
 
@@ -15,11 +17,23 @@ This project is a hands-on **Angular** implementation of an E-Commerce store, co
 
 ## 🎥 YouTube Video Explanation  
 📺 You can watch the full project explanation on my YouTube channel:  
-🔗 **[Watch here](#)** *(https://www.youtube.com/@GeekCodeDev/videos)*  
+🔗 **[Watch here](https://www.youtube.com/@GeekCodeDev/videos)**  
 
-## ⚙️ How to Run the Project Locally  
+## ⚙️ Installation & Contribution  
+This section provides steps on how to set up the project locally and contribute to its development.  
+Whether you're running the project for personal use or contributing to its improvement, follow the steps below.  
+
+### 🔧 Technologies Used  
+- **Angular 17**  
+- **PrimeNG / PrimeFlex**  
+- **TypeScript**  
+- **SCSS**  
+- **REST API Integration**  
+
+### 🚀 How to Install & Run Locally  
 
 1. **Clone the repository**  
    ```bash
-   git clone [https://github.com/YOUR_GITHUB_USERNAME/REPO_NAME](https://github.com/marobakr/Angular17-Ecommerce-Tutorial).git
+   git clone https://github.com/marobakr/Angular17-Ecommerce-Tutorial.git
    cd Angular17-Ecommerce-Tutorial
+
